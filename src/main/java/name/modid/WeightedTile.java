@@ -5,7 +5,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.Weight;
 import net.minecraft.util.collection.Weighted;
 
-public class WeightedTile extends Tile implements Weighted {
+/* public class WeightedTile extends Tile implements Weighted {
     public static final Codec<WeightedTile> CODEC;
 
     public int weight;
@@ -30,4 +30,4 @@ public class WeightedTile extends Tile implements Weighted {
     {
         return weight;
     }
-}
+} */

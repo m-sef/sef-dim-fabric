@@ -40,7 +40,7 @@ import java.util.concurrent.Executor;
 import java.util.Random;
 
 public class RandomTileChunkGenerator extends ChunkGenerator {
-    private TileSet tileSet;
+    private final TileSet tileSet;
 
     public static final Codec<RandomTileChunkGenerator> CODEC = RecordCodecBuilder.create(
             instance -> instance.group(
@@ -103,7 +103,7 @@ public class RandomTileChunkGenerator extends ChunkGenerator {
         StructureTemplateManager structureTemplateManager = world.toServerWorld().getStructureTemplateManager();
 
         List<Tile> tiles = tileSet.getTiles();
-        // SUPER DUPER UNSAFE!!! I AM SO, SO SORRY :======================(
+        // TODO: Do not throw!!!
         Tile       tile  = Weighting.getRandom(world.getRandom(), tiles).orElseThrow();
 
         Identifier structureIdentifier = tile.getStructure();

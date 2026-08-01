@@ -1,6 +1,6 @@
 package name.modid;
 
-public class WeightedTileSet extends TileSet {
+/* public class WeightedTileSet extends TileSet {
     public static final Codec<WeightedTileSet> CODEC;
 
     public
@@ -9,4 +9,4 @@ public class WeightedTileSet extends TileSet {
     {
         super(weightedTileSet);
     }
-}
+} */
