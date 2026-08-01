@@ -3,7 +3,6 @@ package name.modid;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TileSet {
