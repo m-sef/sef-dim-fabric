@@ -14,22 +14,22 @@ public class Tile implements Weighted {
             ).apply(instance, Tile::new)
     );
 
-    private final Identifier structure;
+    private final Identifier structureIdentifier;
     private final int weight;
 
     public
     Tile(
-            Identifier structure,
+            Identifier structureIdentifier,
             int weight)
     {
-        this.structure = structure;
-        this.weight    = weight;
+        this.structureIdentifier = structureIdentifier;
+        this.weight              = weight;
     }
 
     public Identifier
     getStructure()
     {
-        return structure;
+        return structureIdentifier;
     }
 
     public Weight
