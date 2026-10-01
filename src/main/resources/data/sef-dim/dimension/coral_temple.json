@@ -1,0 +1,87 @@
+{
+  "type": "sef-dim:coral_temple",
+  "generator":
+  {
+    "type": "sef-dim:random_tile_chunk_generator",
+    "biome_source":
+    {
+      "type": "minecraft:fixed",
+      "biome": "sef-dim:coral_temple"
+    },
+    "tile_set":
+    {
+      "tiles": [
+        {
+          "structure": "sef-dim:tiles/coral_temple_hallway1",
+          "weight": 8,
+          "can_rotate": true
+        },
+        {
+          "structure": "sef-dim:tiles/coral_temple_hallway1_alt",
+          "weight": 4,
+          "can_rotate": true
+        },
+        {
+          "structure": "sef-dim:tiles/coral_temple_hallway1_alt2",
+          "weight": 2,
+          "can_rotate": true
+        },
+        {
+          "structure": "sef-dim:tiles/coral_temple_hallway2",
+          "weight": 6,
+          "can_rotate": true
+        },
+        {
+          "structure": "sef-dim:tiles/coral_temple_hallway2_alt",
+          "weight": 4,
+          "can_rotate": true
+        },
+        {
+          "structure": "sef-dim:tiles/coral_temple_hallway2_alt2",
+          "weight": 2,
+          "can_rotate": true
+        },
+        {
+          "structure": "sef-dim:tiles/coral_temple_hallway3",
+          "weight": 4,
+          "can_rotate": true
+        },
+        {
+          "structure": "sef-dim:tiles/coral_temple_hallway3_alt",
+          "weight": 2,
+          "can_rotate": true
+        },
+        {
+          "structure": "sef-dim:tiles/coral_temple_hallway3_alt",
+          "weight": 2,
+          "can_rotate": true
+        },
+        {
+          "structure": "sef-dim:tiles/coral_temple_hallway4",
+          "weight": 2,
+          "can_rotate": true
+        },
+        {
+          "structure": "sef-dim:tiles/coral_temple_large_room",
+          "weight": 2,
+          "can_rotate": true
+        },
+        {
+          "structure": "sef-dim:tiles/coral_temple_hallway4_alt2",
+          "weight": 2,
+          "can_rotate": true
+        },
+        {
+          "structure": "sef-dim:tiles/coral_temple_void1",
+          "weight": 4,
+          "can_rotate": true
+        },
+        {
+          "structure": "sef-dim:tiles/coral_temple_void2",
+          "weight": 4,
+          "can_rotate": true
+        }
+      ]
+    }
+  }
+}

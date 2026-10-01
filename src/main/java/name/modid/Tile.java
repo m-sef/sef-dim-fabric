@@ -10,20 +10,24 @@ public class Tile implements Weighted {
     public static final Codec<Tile> CODEC = RecordCodecBuilder.create(
             instance -> instance.group(
                     Identifier.CODEC.fieldOf("structure").forGetter(Tile::getStructure),
-                    Codec.INT.optionalFieldOf("weight", 1).forGetter(Tile::getWeightValue)
+                    Codec.INT.optionalFieldOf("weight", 1).forGetter(Tile::getWeightValue),
+                    Codec.BOOL.optionalFieldOf("can_rotate", false).forGetter(Tile::canRotate)
             ).apply(instance, Tile::new)
     );
 
     private final Identifier structureIdentifier;
-    private final int weight;
+    private final int       weight;
+    private final boolean   can_rotate;
 
     public
     Tile(
             Identifier structureIdentifier,
-            int weight)
+            int        weight,
+            boolean    can_rotate)
     {
         this.structureIdentifier = structureIdentifier;
         this.weight              = weight;
+        this.can_rotate          = can_rotate;
     }
 
     public Identifier
@@ -42,5 +46,11 @@ public class Tile implements Weighted {
     getWeightValue()
     {
         return weight;
+    }
+
+    public boolean
+    canRotate()
+    {
+        return can_rotate;
     }
 }

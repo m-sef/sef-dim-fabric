@@ -5,16 +5,16 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.StructureTemplate;
 import net.minecraft.structure.StructureTemplateManager;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.Pool;
 import net.minecraft.util.collection.Weighting;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkSectionPos;
 import net.minecraft.world.ChunkRegion;
 import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.Heightmap;
@@ -23,7 +23,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.biome.source.BiomeAccess;
 import net.minecraft.world.biome.source.BiomeSource;
-import net.minecraft.world.biome.source.FixedBiomeSource;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.StructureAccessor;
@@ -31,13 +30,11 @@ import net.minecraft.world.gen.chunk.Blender;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.VerticalBlockSample;
 import net.minecraft.world.gen.noise.NoiseConfig;
-import net.minecraft.world.gen.structure.Structure;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
-import java.util.Random;
 
 public class RandomTileChunkGenerator extends ChunkGenerator {
     private final TileSet tileSet;
@@ -103,8 +100,12 @@ public class RandomTileChunkGenerator extends ChunkGenerator {
         StructureTemplateManager structureTemplateManager = world.toServerWorld().getStructureTemplateManager();
 
         List<Tile> tiles = tileSet.getTiles();
-        // TODO: Do not throw!!!
-        Tile       tile  = Weighting.getRandom(world.getRandom(), tiles).orElseThrow();
+        // TODO: Throwing shouldn't be an issue here, but if I ever get around to it, I should consider handling this error more gracefully.
+        Tile tile = Weighting.getRandom(world.getRandom(), tiles).orElseThrow();
+
+        BlockRotation tileRotation = tile.canRotate()
+            ? BlockRotation.values()[world.getRandom().nextInt(4)]
+            : BlockRotation.NONE;
 
         Identifier structureIdentifier = tile.getStructure();
 
@@ -113,11 +114,13 @@ public class RandomTileChunkGenerator extends ChunkGenerator {
         BlockPos chunkPos = chunk.getPos().getStartPos();
 
         structureTemplate.ifPresent(template -> {
+            BlockPos placementPos = template.offsetByTransformedSize(chunkPos, BlockMirror.NONE, tileRotation);
+
             template.place(
                     world,
+                    placementPos,
                     chunkPos,
-                    chunkPos,
-                    new StructurePlacementData(),
+                    new StructurePlacementData().setRotation(tileRotation),
                     world.getRandom(),
                     Block.NOTIFY_ALL
             );
@@ -245,7 +248,7 @@ public class RandomTileChunkGenerator extends ChunkGenerator {
         return 0;
     }
 
-    @Override
+    /* @Override
     public CompletableFuture<Chunk>
     populateBiomes(
             Executor executor,
@@ -255,7 +258,7 @@ public class RandomTileChunkGenerator extends ChunkGenerator {
             Chunk chunk)
     {
         return CompletableFuture.completedFuture(chunk);
-    }
+    } */
 
     @Override
     public void

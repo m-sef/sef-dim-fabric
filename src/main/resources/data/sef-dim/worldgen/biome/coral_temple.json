@@ -1,13 +1,21 @@
 {
   "has_precipitation": false,
-  "temperature": 0.5,
-  "downfall": 0.5,
+  "temperature": 0.7,
+  "downfall": 0.8,
   "effects":
   {
-    "fog_color": 12638463,
-    "sky_color": 8103167,
-    "water_color": 4159204,
-    "water_fog_color": 329011
+    "fog_color": 0,
+    "sky_color": 0,
+    "water_color": 0,
+    "water_fog_color": 0,
+    "particle":
+    {
+      "options":
+      {
+        "type": "minecraft:white_ash"
+      },
+      "probability": 0.033
+    }
   },
   "carvers": {},
   "features": [
