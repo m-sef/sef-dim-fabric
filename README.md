@@ -1,4 +1,14 @@
-# Sef Dim
+# Sef's Dimension(s)
+
+## About
+
+![sef-dim:coral_temple_large_room](screenshots/5.png)
+
+Currently, there is only dimension `sef-dim:coral_temple`. It is only accessible via commands: 
+
+```
+execute in sef-dim:coral_temple run tp USERNAME ~ ~ ~
+```
 
 ## Setup
 
